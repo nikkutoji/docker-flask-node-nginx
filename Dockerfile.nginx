@@ -1,0 +1,17 @@
+# Dockerfile.nginx
+
+FROM nginx:latest
+
+# Install netcat to enable backend wait script
+RUN apt-get update && apt-get install -y netcat-openbsd && apt-get clean
+
+# Copy nginx config and wait script into image
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+COPY wait-for-backend.sh /wait-for-backend.sh
+
+# Make script executable
+RUN chmod +x /wait-for-backend.sh
+RUN mkdir -p /app/logs && chown -R root:root /app/logs
+
+# Set startup command to wait for backend
+CMD ["/wait-for-backend.sh"]

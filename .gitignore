@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+
+# Node.js
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# Docker
+*.pid
+*.sock
+
+# Others
+.env
+.DS_Store
+
+#Grafana
+grafana/plugins/*

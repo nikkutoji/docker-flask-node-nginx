@@ -1,0 +1,13 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Keep this if requirements.txt is in root
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+# This is key: copy only your backend folder
+COPY . .
+
+CMD ["python", "app.py"]

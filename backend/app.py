@@ -1,9 +1,11 @@
 import logging
 import socket
-from flask import Flask, jsonify, request
 import os
+from flask import Flask, jsonify, request
+from prometheus_flask_exporter import PrometheusMetrics  # 👈 Add this
 
 app = Flask(__name__)
+metrics = PrometheusMetrics(app)  # 👈 Initialize Prometheus exporter
 
 # Ensure log directory exists
 os.makedirs("/app/logs", exist_ok=True)
